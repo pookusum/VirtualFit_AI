@@ -1,6 +1,7 @@
 import HeroBackground from "./HeroBackground";
 import HeroText from "./HeroText";
 import HeroPreview from "./HeroPreview";
+import FadeIn from "@/components/common/FadeIn";
 
 export default function Hero() {
   return (
@@ -9,10 +10,13 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-between gap-16 px-6 py-20 lg:flex-row">
         {/* Left Side */}
-        <HeroText />
+        <FadeIn>
+          <HeroText />
+        </FadeIn>
 
-        {/* Right Side */}
-        <HeroPreview />
+        <FadeIn>
+          <HeroPreview />
+        </FadeIn>
       </div>
     </section>
   );

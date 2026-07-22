@@ -12,7 +12,7 @@ export default function FloatingCard({
   subtitle,
 }: FloatingCardProps) {
   return (
-    <div className="w-64 rounded-2xl border border-white/10 bg-slate-900/80 p-5 shadow-xl backdrop-blur-md transition hover:scale-105">
+    <div className="w-64 rounded-2xl border border-white/10 bg-slate-900/80 p-5 shadow-xl backdrop-blur-md transition hover:scale-105 hover:-translate-y-2 duration-300 cursor-pointer">
       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600/20 text-violet-400">
         {icon}
       </div>

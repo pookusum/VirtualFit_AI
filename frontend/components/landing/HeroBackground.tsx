@@ -2,10 +2,10 @@ export default function HeroBackground() {
   return (
     <>
       {/* Purple Blur */}
-      <div className="absolute left-0 top-20 h-96 w-96 rounded-full bg-violet-600/20 blur-3xl" />
+      <div className="absolute left-0 top-10 h-[500px] w-[500px] rounded-full bg-violet-600/20 blur-[140px]" />
 
       {/* Blue Blur */}
-      <div className="absolute right-0 top-40 h-[450px] w-[450px] rounded-full bg-cyan-500/20 blur-3xl" />
+      <div className="absolute right-0 top-40 h-[500px] w-[500px] rounded-full bg-cyan-600/20 blur-[140px]" />
 
       {/* Grid */}
       <div

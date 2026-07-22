@@ -12,6 +12,17 @@ export default function HeroPreview() {
 
       <div className="space-y-6">
 
+      <div className="ml-0">
+      </div>
+
+      <div className="ml-16">
+      </div>
+
+      <div className="ml-8">
+      </div>
+
+      </div>
+
         <FloatingCard
           icon={<Camera size={28} />}
           title="Upload Photo"
@@ -37,9 +48,8 @@ export default function HeroPreview() {
           title="Virtual Try-On"
           subtitle="Generate realistic AI-powered outfit previews."
         />
-
+        
       </div>
 
-    </div>
-  );
+    );
 }
