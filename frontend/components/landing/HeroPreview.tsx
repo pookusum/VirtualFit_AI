@@ -1,7 +1,45 @@
+import {
+  Camera,
+  BrainCircuit,
+  Shirt,
+} from "lucide-react";
+
+import FloatingCard from "./FloatingCard";
+
 export default function HeroPreview() {
   return (
-    <div className="flex h-[500px] flex-1 items-center justify-center rounded-3xl border border-white/10 bg-slate-900">
-      Preview Section
+    <div className="relative flex flex-1 items-center justify-center">
+
+      <div className="space-y-6">
+
+        <FloatingCard
+          icon={<Camera size={28} />}
+          title="Upload Photo"
+          subtitle="Upload a full-body image to begin your AI try-on."
+        />
+
+        <div className="flex justify-center text-violet-400 text-2xl">
+          ↓
+        </div>
+
+        <FloatingCard
+          icon={<BrainCircuit size={28} />}
+          title="AI Processing"
+          subtitle="Body detection, segmentation and outfit fitting."
+        />
+
+        <div className="flex justify-center text-cyan-400 text-2xl">
+          ↓
+        </div>
+
+        <FloatingCard
+          icon={<Shirt size={28} />}
+          title="Virtual Try-On"
+          subtitle="Generate realistic AI-powered outfit previews."
+        />
+
+      </div>
+
     </div>
   );
 }
