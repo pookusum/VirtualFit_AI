@@ -1,23 +1,15 @@
 import { brands } from "@/constants/brands";
-import Features from "./Features";
+import SectionHeading from "../common/SectionHeading";
 export default function TrustedBrands() {
     return (
          <section className="bg-slate-950 py-20">
 
     <div>
 
-        <div className="text-center">
-
-            <h2 className="text-3xl font-bold text-white">
-                Trusted by innovative fashion brands
-            </h2>
-
-            <p className="mt-4 text-slate-400">
-                Our AI technology is built for the future of digital fashion.
-            </p>
-
-        </div>
-
+        <SectionHeading
+            title="Trusted by Innovative Fashion Brands"
+            description="Our AI technology is built for the future of digital fashion."
+/>
         <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
 
             {brands.map((brand) => (
