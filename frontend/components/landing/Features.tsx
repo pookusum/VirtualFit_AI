@@ -4,6 +4,7 @@ import SectionHeading from "../common/SectionHeading";
 import FadeIn from "../common/FadeIn";
 
 
+
 export default function Features() {
   return (
     <section className="bg-slate-950 py-24">

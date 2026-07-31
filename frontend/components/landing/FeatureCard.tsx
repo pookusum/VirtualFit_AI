@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import GlassCard from "../common/GlassCard";
 
 interface FeatureCardProps {
   title: string;
@@ -12,6 +13,7 @@ export default function FeatureCard({
   icon: Icon,
 }: FeatureCardProps) {
   return (
+    <GlassCard>
     <div className="rounded-2xl border border-white/10 bg-slate-900 p-6 transition-all duration-300 hover:-translate-y-2 hover:border-violet-500 hover:shadow-xl">
       {/* Icon */}
       <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-violet-600/20 text-violet-400">
@@ -28,5 +30,6 @@ export default function FeatureCard({
         {description}
       </p>
     </div>
+    </GlassCard>
   );
 }
