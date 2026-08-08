@@ -13,20 +13,27 @@ export default function DemoImageCard({
 }: DemoImageCardProps) {
   return (
     <GlassCard className="p-4">
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-48 object-cover rounded-xl mb-4"
-      />
+      
+      {/* Image */}
+      <div className="w-full flex justify-center">
+        <img
+          src={image}
+          alt={title}
+          className="max-w-full h-auto rounded-xl object-contain"
+        />
+      </div>
 
-      <div className="space-y-1">
-        <h3 className="text-2xl font-semibold text-white-900 tracking-tight">
+      {/* Text */}
+      <div className="mt-5 space-y-1">
+        <h3 className="text-2xl font-semibold text-white tracking-tight">
           {title}
         </h3>
-        <p className="text-sm text-white-400">
+
+        <p className="text-sm text-slate-400">
           {subtitle}
         </p>
       </div>
+
     </GlassCard>
   );
 }

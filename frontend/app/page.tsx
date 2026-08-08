@@ -4,6 +4,7 @@ import TrustedBrands from "@/components/landing/TrustedBrands";
 import Features from "@/components/landing/Features";
 import HowItWorks from "@/components/landing/HowItWorks";
 import Testimonials from "@/components/landing/Testimonials";
+import DemoSection from "@/components/landing/DemoSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Features />
       <HowItWorks />
       <Testimonials />
+      <DemoSection />
     </main>
     
   );
