@@ -6,6 +6,7 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import Testimonials from "@/components/landing/Testimonials";
 import DemoSection from "@/components/landing/DemoSection";
 
+
 export default function Home() {
   return (
     <main className="bg-slate-950 text-white">
