@@ -1,7 +1,6 @@
 import UploadPhoto from "@/components/try-on/UploadPhoto";
-import OutfitSelector from "@/components/try-on/OutfitSelector";
-
-
+import OutfitSelector from "@/components/try-on/OutfitSelector"
+import OutfitUploader from "@/components/try-on/OutfitUploader";
 
 export default function TryOnPage() {
   return (
@@ -25,7 +24,10 @@ export default function TryOnPage() {
           <div className="mt-12">
             <UploadPhoto />
 
+
             <OutfitSelector />
+           
+
           </div>
 
         </div>
