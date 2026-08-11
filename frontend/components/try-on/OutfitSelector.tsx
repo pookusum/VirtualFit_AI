@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import GlassCard from "../common/GlassCard";
 import OutfitUploader from "./OutfitUploader";
+
+interface OutfitSelectorProps {
+  selectedOutfit: string | null;
+  onSelect: (outfitId: string) => void;
+}
 
 const outfits = [
   {
@@ -22,20 +26,20 @@ const outfits = [
   },
 ];
 
-export default function OutfitSelector() {
-  const [selectedOutfit, setSelectedOutfit] = useState<string | null>(null);
-
+export default function OutfitSelector({
+  selectedOutfit,
+  onSelect,
+}: OutfitSelectorProps) {
   const handleOutfitSelect = (id: string) => {
-    setSelectedOutfit(id);
+    onSelect(id);
   };
 
   const handleCustomOutfit = () => {
-    setSelectedOutfit("custom");
+    onSelect("custom");
   };
 
   return (
-    <GlassCard className="mx-auto mt-6 max-w-5xl p-6">
-
+    <GlassCard className="mt-8">
       {/* Heading */}
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-white">
@@ -47,9 +51,8 @@ export default function OutfitSelector() {
         </p>
       </div>
 
-      {/* Predefined outfits */}
+      {/* Predefined Outfits */}
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-
         {outfits.map((outfit) => {
           const isSelected = selectedOutfit === outfit.id;
 
@@ -84,10 +87,9 @@ export default function OutfitSelector() {
             </button>
           );
         })}
-
       </div>
 
-      {/* Divider */}
+      {/* Single Divider */}
       <div className="my-8 flex items-center gap-4">
         <div className="h-px flex-1 bg-white/10" />
 
@@ -98,12 +100,11 @@ export default function OutfitSelector() {
         <div className="h-px flex-1 bg-white/10" />
       </div>
 
-      {/* Custom outfit */}
+      {/* Custom Outfit */}
       <OutfitUploader
         onUpload={handleCustomOutfit}
         isSelected={selectedOutfit === "custom"}
       />
-
     </GlassCard>
   );
 }

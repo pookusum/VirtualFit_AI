@@ -1,10 +1,15 @@
 "use client";
 
 import { useRef, useState } from "react";
+import type { ChangeEvent } from "react";
 import GlassCard from "@/components/common/GlassCard";
 
-export default function UploadPhoto() {
-  const fileInputRef = useRef<HTMLInputElement>(null);
+interface UploadPhotoProps {
+  onUpload: (image: string) => void;
+}
+
+export default function UploadPhoto({ onUpload }: UploadPhotoProps) {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [image, setImage] = useState<string | null>(null);
 
@@ -13,19 +18,30 @@ export default function UploadPhoto() {
   };
 
   const handleFileChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
 
     if (!file) return;
 
+    if (!file.type.startsWith("image/")) {
+      alert("Please upload an image file.");
+      return;
+    }
+
     const imageUrl = URL.createObjectURL(file);
 
     setImage(imageUrl);
+
+    // Send uploaded image to parent
+    onUpload(imageUrl);
   };
 
   const handleRemove = () => {
     setImage(null);
+
+    // Tell parent that image was removed
+    onUpload("");
 
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -33,13 +49,13 @@ export default function UploadPhoto() {
   };
 
   return (
-    <GlassCard className="mx-auto max-w-2xl p-8">
-      <div className="text-center">
+    <GlassCard>
+      <div className="flex flex-col items-center text-center">
 
         {!image ? (
           <>
             {/* Upload Icon */}
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-600/20 text-3xl">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-600/20 text-3xl">
               📷
             </div>
 
@@ -70,7 +86,7 @@ export default function UploadPhoto() {
         ) : (
           <>
             {/* Image Preview */}
-            <div className="mx-auto max-w-md overflow-hidden rounded-xl border border-white/10">
+            <div className="mx-auto max-w-md overflow-hidden rounded-xl">
               <img
                 src={image}
                 alt="Uploaded photo"
@@ -78,7 +94,7 @@ export default function UploadPhoto() {
               />
             </div>
 
-            {/* Preview Text */}
+            {/* Uploaded Message */}
             <h2 className="mt-6 text-2xl font-semibold text-white">
               Photo Uploaded
             </h2>

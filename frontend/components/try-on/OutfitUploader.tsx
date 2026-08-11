@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
+import type { ChangeEvent } from "react";
+
 interface OutfitUploaderProps {
   onUpload: () => void;
   isSelected: boolean;
@@ -11,10 +13,11 @@ export default function OutfitUploader({
   isSelected,
 }: OutfitUploaderProps) {
   const [image, setImage] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
 
@@ -26,53 +29,59 @@ export default function OutfitUploader({
     }
 
     const imageUrl = URL.createObjectURL(file);
+
     setImage(imageUrl);
+
+    // Tell OutfitSelector that custom outfit was selected
+    onUpload();
+  };
+
+  const handleRemove = () => {
+    setImage(null);
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   return (
-    
-    <div className="mt-6 border-t border-white/10 pt-6">
+    <div
+      className={`rounded-xl p-5 text-center transition-all duration-300 ${
+        isSelected
+          ? "border border-violet-500 bg-violet-500/10"
+          : "border border-transparent"
+      }`}
+    >
+      {/* Heading */}
+      <h3 className="text-lg font-semibold text-white">
+        Upload Your Own Outfit
+      </h3>
 
-      <div className="text-center">
-        <p className="text-sm text-slate-500">
-          OR
-        </p>
+      <p className="mt-1 text-xs text-slate-400">
+        Have a specific outfit in mind?
+      </p>
 
-        <h3 className="mt-2 text-lg font-semibold text-white">
-          Upload Your Own Outfit
-        </h3>
-
-        <p className="mt-1 text-xs text-slate-400">
-          Have a specific outfit in mind?
-        </p>
-      </div>
-
+      {/* Upload Area */}
       <div className="mt-4 flex flex-col items-center">
 
         {image ? (
-          <div className="flex flex-col items-center">
-
+          <>
+            {/* Outfit Preview */}
             <img
               src={image}
               alt="Uploaded outfit"
               className="h-32 w-24 rounded-lg object-contain"
             />
 
+            {/* Remove */}
             <button
               type="button"
-              onClick={() => {
-                setImage(null);
-
-                if (fileInputRef.current) {
-                  fileInputRef.current.value = "";
-                }
-              }}
-              className="mt-3 text-xs text-red-400 hover:text-red-300"
+              onClick={handleRemove}
+              className="mt-3 text-xs text-red-400 transition hover:text-red-300"
             >
               Remove Outfit
             </button>
-
-          </div>
+          </>
         ) : (
           <>
             <button
@@ -89,6 +98,7 @@ export default function OutfitUploader({
           </>
         )}
 
+        {/* Hidden Input */}
         <input
           ref={fileInputRef}
           type="file"

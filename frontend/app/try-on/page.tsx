@@ -1,8 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import UploadPhoto from "@/components/try-on/UploadPhoto";
-import OutfitSelector from "@/components/try-on/OutfitSelector"
-import OutfitUploader from "@/components/try-on/OutfitUploader";
+import OutfitSelector from "@/components/try-on/OutfitSelector";
 
 export default function TryOnPage() {
+ const [personImage, setPersonImage] = useState<string | null>(null);
+const [selectedOutfit, setSelectedOutfit] = useState<string | null>(null);
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="py-16 sm:py-20 lg:py-24">
@@ -20,14 +25,24 @@ export default function TryOnPage() {
             </p>
           </div>
 
-          {/* Upload Section */}
+          {/* Upload & Outfit Section */}
           <div className="mt-12">
-            <UploadPhoto />
+            <UploadPhoto onUpload={setPersonImage} />
 
+            <OutfitSelector
+              selectedOutfit={selectedOutfit}
+              onSelect={setSelectedOutfit}
+            />
 
-            <OutfitSelector />
-           
-
+            {/* Try-On Button */}
+            <div className="mt-10 flex justify-center">
+              <button
+                disabled={!personImage || !selectedOutfit}
+                className="rounded-xl bg-violet-600 px-8 py-3 font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Try VirtualFit AI
+              </button>
+            </div>
           </div>
 
         </div>
