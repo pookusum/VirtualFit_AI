@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 
 interface OutfitUploaderProps {
-  onUpload: () => void;
+  onUpload: (image: string) => void;
   isSelected: boolean;
 }
 
@@ -28,12 +28,10 @@ export default function OutfitUploader({
       return;
     }
 
-    const imageUrl = URL.createObjectURL(file);
+   const imageUrl = URL.createObjectURL(file);
 
     setImage(imageUrl);
-
-    // Tell OutfitSelector that custom outfit was selected
-    onUpload();
+    onUpload(imageUrl);
   };
 
   const handleRemove = () => {

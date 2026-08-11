@@ -49,7 +49,7 @@ export default function UploadPhoto({ onUpload }: UploadPhotoProps) {
   };
 
   return (
-    <GlassCard>
+    <GlassCard className="p-6 sm:p-8">
       <div className="flex flex-col items-center text-center">
 
         {!image ? (

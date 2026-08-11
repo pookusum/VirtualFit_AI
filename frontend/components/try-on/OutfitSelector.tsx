@@ -5,7 +5,9 @@ import OutfitUploader from "./OutfitUploader";
 
 interface OutfitSelectorProps {
   selectedOutfit: string | null;
+  customOutfitImage: string;
   onSelect: (outfitId: string) => void;
+  onCustomUpload: (image: string) => void;
 }
 
 const outfits = [
@@ -28,7 +30,9 @@ const outfits = [
 
 export default function OutfitSelector({
   selectedOutfit,
+  customOutfitImage,
   onSelect,
+  onCustomUpload,
 }: OutfitSelectorProps) {
   const handleOutfitSelect = (id: string) => {
     onSelect(id);
@@ -39,7 +43,7 @@ export default function OutfitSelector({
   };
 
   return (
-    <GlassCard className="mt-8">
+    <GlassCard className="mt-8 p-6 sm:p-8">
       {/* Heading */}
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-white">
@@ -70,7 +74,7 @@ export default function OutfitSelector({
               <img
                 src={outfit.image}
                 alt={outfit.name}
-                className="h-44 w-full object-contain"
+                className="h-36 w-full object-contain sm:h-40"
               />
 
               <div className="p-4">
