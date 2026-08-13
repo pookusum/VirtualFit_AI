@@ -12,7 +12,7 @@ export default function TryOnPage() {
   const [selectedOutfit, setSelectedOutfit] = useState<string | null>(null);
   const [customOutfitImage, setCustomOutfitImage] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
-  const [resultImage, setResultImage] = useState("");
+  const [resultImage, setResultImage] = useState<string | null>(null);
 
   const handleTryOn = () => {
     setIsProcessing(true);
@@ -75,7 +75,13 @@ export default function TryOnPage() {
 
           {/* Result */}
           {resultImage && (
-            <TryOnResult image={resultImage} />
+            <TryOnResult
+  image={resultImage}
+  onTryAgain={() => {
+    setResultImage(null);
+    setSelectedOutfit(null);
+  }}
+/>
           )}
 
         </div>

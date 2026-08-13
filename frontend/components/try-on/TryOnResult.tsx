@@ -1,9 +1,11 @@
 interface TryOnResultProps {
   image: string;
+  onTryAgain: () => void;
 }
 
 export default function TryOnResult({
   image,
+  onTryAgain
 }: TryOnResultProps) {
   return (
     <div className="mt-10 rounded-2xl border border-white/10 bg-slate-900/80 p-6 sm:p-8">
@@ -28,11 +30,12 @@ export default function TryOnResult({
 
       <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
         <button
-          type="button"
-          className="rounded-xl bg-violet-600 px-6 py-3 font-semibold text-white transition hover:bg-violet-500"
-        >
-          Try Another Outfit
-        </button>
+      type="button"
+      onClick={onTryAgain}
+      className="rounded-xl bg-violet-600 px-6 py-3 font-semibold text-white transition hover:bg-violet-500"
+>
+  Try Another Outfit
+</button>
 
         <button
           type="button"
