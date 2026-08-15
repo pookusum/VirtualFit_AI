@@ -5,6 +5,7 @@ import Features from "@/components/landing/Features";
 import HowItWorks from "@/components/landing/HowItWorks";
 import Testimonials from "@/components/landing/Testimonials";
 import DemoSection from "@/components/landing/DemoSection";
+import FinalCTA from "@/components/landing/FinalCTA";
 
 
 export default function Home() {
@@ -17,6 +18,8 @@ export default function Home() {
       <HowItWorks />
       <Testimonials />
       <DemoSection />
+      <FinalCTA />
+      
     </main>
     
   );
