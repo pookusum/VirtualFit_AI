@@ -6,7 +6,7 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import Testimonials from "@/components/landing/Testimonials";
 import DemoSection from "@/components/landing/DemoSection";
 import FinalCTA from "@/components/landing/FinalCTA";
-
+import Footer from "@/components/common/Footer";
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
       <Testimonials />
       <DemoSection />
       <FinalCTA />
-      
+      <Footer />
     </main>
     
   );
