@@ -82,7 +82,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm">
               <li>
                 <a
-                  href="https://github.com/"
+                  href="https://github.com/pookusum/VirtualFit_AI"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"
@@ -93,7 +93,7 @@ export default function Footer() {
 
               <li>
                 <a
-                  href="https://www.linkedin.com/"
+                  href="https://www.linkedin.com/in/poojakusum/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"
@@ -115,7 +115,7 @@ export default function Footer() {
           </p>
 
           <p>
-            Built for Personalized Fashion. Made with ❤️ by the VirtualFit AI Team.
+            Built for Personalized Fashion. Made with ❤️ by Pooja.
           </p>
         </div>
       </div>
