@@ -1,5 +1,6 @@
 "use client";
 
+import { Images } from "lucide-react";
 import GlassCard from "../common/GlassCard";
 import OutfitUploader from "./OutfitUploader";
 
@@ -14,19 +15,20 @@ const outfits = [
   {
     id: "dress",
     name: "Elegant Dress",
-    image: "/Images/dress.png",
+    image: "/Images/Elegant_dress.jpg",
   },
   {
     id: "casual",
     name: "Casual Outfit",
-    image: "/Images/casual.png",
+    image: "/Images/Casual.jpg",
   },
   {
     id: "shirt",
     name: "Classic Shirt",
-    image: "/Images/shirt.png",
+    image: "/Images/classy_shirt.jpg",
   },
 ];
+
 
 export default function OutfitSelector({
   selectedOutfit,
@@ -62,33 +64,35 @@ export default function OutfitSelector({
 
           return (
             <button
-              key={outfit.id}
-              type="button"
-              onClick={() => handleOutfitSelect(outfit.id)}
-              className={`overflow-hidden rounded-xl border text-left transition-all duration-300 ${
-                isSelected
-                  ? "border-violet-500 bg-violet-500/10 shadow-lg shadow-violet-500/20"
-                  : "border-white/10 bg-slate-900 hover:-translate-y-1 hover:border-violet-500/50"
-              }`}
-            >
-              <img
-                src={outfit.image}
-                alt={outfit.name}
-                className="h-36 w-full object-contain sm:h-40"
-              />
+  key={outfit.id}
+  type="button"
+  onClick={() => handleOutfitSelect(outfit.id)}
+  className={`min-h-[22rem] overflow-hidden rounded-xl border text-left transition-all duration-300 ${
+    isSelected
+      ? "border-violet-500 bg-violet-500/10 shadow-lg shadow-violet-500/20"
+      : "border-white/10 bg-slate-900 hover:-translate-y-1 hover:border-violet-500/50"
+  }`}
+>
+  <div className="flex h-64 items-center justify-center bg-slate-950/30 sm:h-72">
+    <img
+      src={outfit.image}
+      alt={outfit.name}
+      className="h-full w-full object-contain p-3"
+    />
+  </div>
 
-              <div className="p-4">
-                <h3 className="font-semibold text-white">
-                  {outfit.name}
-                </h3>
+  <div className="p-4">
+    <h3 className="font-semibold text-white">
+      {outfit.name}
+    </h3>
 
-                {isSelected && (
-                  <p className="mt-1 text-sm font-medium text-violet-400">
-                    Selected ✓
-                  </p>
-                )}
-              </div>
-            </button>
+    {isSelected && (
+      <p className="mt-1 text-sm font-medium text-violet-400">
+        Selected ✓
+      </p>
+    )}
+  </div>
+</button>
           );
         })}
       </div>
