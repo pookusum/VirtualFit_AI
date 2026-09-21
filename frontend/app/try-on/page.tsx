@@ -61,9 +61,9 @@ export default function TryOnPage() {
             <div className="mt-10 flex justify-center">
               <button
                 type="button"
-                disabled={!personImage || !selectedOutfit}
                 onClick={handleTryOn}
-                className="rounded-xl bg-violet-600 px-8 py-3 font-semibold text-white transition-all duration-300 hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-40"
+                disabled={!personImage || !selectedOutfit}
+                className="rounded-xl bg-violet-600 px-8 py-3 font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Try VirtualFit AI
               </button>
@@ -76,12 +76,12 @@ export default function TryOnPage() {
           {/* Result */}
           {resultImage && (
             <TryOnResult
-  image={resultImage}
-  onTryAgain={() => {
-    setResultImage(null);
-    setSelectedOutfit(null);
-  }}
-/>
+              image={resultImage}
+              onTryAgain={() => {
+                setResultImage(null);
+                setSelectedOutfit(null);
+              }}
+            />
           )}
 
         </div>
