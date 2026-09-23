@@ -1,7 +1,7 @@
 export const navigation = [
   {
     title: "Home",
-    href: "/",
+    href: "#home",
   },
   {
     title: "Features",
