@@ -8,7 +8,7 @@ import DemoSection from "@/components/landing/DemoSection";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/common/Footer";
 import Pricing from "@/components/landing/Pricing";
-import Contact from "@/components/landing/Contact";
+
 
 export default function Home() {
   return (
@@ -16,40 +16,31 @@ export default function Home() {
 
       <Navbar />
 
-      <section id="home">
-        <Hero />
-      </section>
-
-      <TrustedBrands />
-
-      <section id="features">
-        <Features />
-      </section>
-
-    
-      <section id="how-it-works">
-        <HowItWorks />
-      </section>
-
-    
-      <Testimonials />
-
-      <section id="demo">
-        <DemoSection />
-      </section>
-
-      <section id="pricing">
-  <Pricing />
+<section id="home">
+  <Hero />
 </section>
 
-<section id="contact">
-  <Contact />
+<TrustedBrands />
+
+<section id="features">
+  <Features />
 </section>
 
+<section id="how-it-works">
+  <HowItWorks />
+</section>
 
-      <FinalCTA />
+<Testimonials />
 
-      <Footer />
+<section id="demo">
+  <DemoSection />
+</section>
+
+<Pricing />
+
+<FinalCTA />
+
+<Footer />
 
     </main>
   );
