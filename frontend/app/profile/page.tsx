@@ -55,46 +55,79 @@ export default function ProfilePage() {
     void loadProfile();
   }, [router]);
 
-  const handleSave = async () => {
-    if (!profile) return;
+  
+const handleSave = async () => {
+  if (!profile) return;
 
-    setIsSaving(true);
-    setMessage("");
+  const fullName = profile.full_name?.trim() ?? "";
 
+  if (!fullName) {
+    setMessage("Please enter your full name.");
+    return;
+  }
+
+  setIsSaving(true);
+  setMessage("");
+
+  try {
     const supabase = createClient();
 
     const {
       data: { user },
+      error: userError,
     } = await supabase.auth.getUser();
 
-    if (!user) {
+    if (userError || !user) {
+      setMessage("Your session has expired. Please log in again.");
       router.replace("/login");
       return;
     }
 
-    const { error } = await supabase
+    // Save the name in the profiles table.
+    const { error: profileError } = await supabase
       .from("profiles")
       .upsert(
         {
           user_id: user.id,
-          full_name: profile.full_name?.trim() || null,
+          full_name: fullName,
           updated_at: new Date().toISOString(),
         },
         { onConflict: "user_id" }
       );
 
-    if (error) {
-      setMessage(error.message);
-    } else {
-      await supabase.auth.updateUser({
-        data: { full_name: profile.full_name?.trim() || "" },
-      });
-
-      setMessage("Profile updated successfully!");
+    if (profileError) {
+      console.error("Profile save error:", profileError);
+      setMessage(`Could not save profile: ${profileError.message}`);
+      return;
     }
 
+    // Keep the name in Supabase Auth metadata in sync.
+    const { error: authError } = await supabase.auth.updateUser({
+      data: { full_name: fullName },
+    });
+
+    if (authError) {
+      console.error("Auth metadata update error:", authError);
+      setMessage(
+        "Profile saved, but account metadata could not be updated. Please try again."
+      );
+      return;
+    }
+
+    // Confirm the saved name in the UI.
+    setProfile((current) =>
+      current ? { ...current, full_name: fullName } : current
+    );
+
+    setMessage("Your profile has been updated successfully!");
+  } catch (error) {
+    console.error("Unexpected profile save error:", error);
+    setMessage("Something went wrong while saving. Please try again.");
+  } finally {
     setIsSaving(false);
-  };
+  }
+};
+
 
   const handleLogout = async () => {
     const supabase = createClient();
