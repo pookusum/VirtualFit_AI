@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 export default function SignupPage() {
   const supabase = createClient();
+  const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] =
@@ -77,16 +79,19 @@ export default function SignupPage() {
 
       console.log("Signup data:", data);
 
-      setSuccessMessage(
-        "Account created successfully! Please check your email to verify your account."
-      );
+// Clear form
+setFullName("");
+setEmail("");
+setPassword("");
+setConfirmPassword("");
+setAgreedToTerms(false);
 
-      // Clear form
-      setFullName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setAgreedToTerms(false);
+
+if (!data.session) {
+  router.replace("/login?signup=check-email");
+} else {
+  router.replace("/login?signup=success");
+}
 
     } catch (error) {
       console.error(error);
