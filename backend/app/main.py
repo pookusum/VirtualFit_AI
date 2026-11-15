@@ -1,13 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.routes.auth import router as auth_router
 
+app.include_router(auth_router)
 app = FastAPI(
     title="VirtualFit AI API",
     description="Backend API for the VirtualFit AI virtual try-on platform.",
     version="1.0.0",
 )
 
-# Allow communication from the Next.js frontend
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
