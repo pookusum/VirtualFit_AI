@@ -48,11 +48,17 @@ export default function LoginPage() {
         return;
       }
 
-      console.log("Logged in user:", data.user);
+      // Verify the session was created after login
+const { data: verifySession, error: verifyError } =
+  await supabase.auth.getSession();
 
-      // Login successful
-      router.push("/");
-      router.refresh();
+console.log("Login successful:", !!data.user);
+console.log("Session exists:", !!verifySession.session);
+console.log("Session verification error:", verifyError?.message ?? "None");
+
+// Login successful
+router.push("/");
+router.refresh();
 
     } catch (error) {
       console.error(error);
